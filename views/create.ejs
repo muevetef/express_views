@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> </title>
+</head>
+<body>
+    <%- include("./partials/nav.ejs") %>
+
+    <div class="content create-blog">
+       <form>
+           <label for="title">Título</label>
+           <input type="text" name="title" id="title" required>
+           <label for="resume">Resumen</label>
+           <input type="text" name="resume" id="resume" required>
+           <label for="body">Contenido</label>
+           <textarea name="body" id="body" cols="30" rows="10"></textarea>
+           <input type="submit" value="Crear">
+       </form>
+    </div>
+    <%- include("./partials/footer.ejs") %>
+</body>
+</html>
