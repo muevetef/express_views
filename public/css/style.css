@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@400&display=swap");
+* {
+  box-sizing: border-box;
+}
+body {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+  font-family: "Noto Sans Display", sans-serif;
+}
+p,
+h1,
+h2,
+h3,
+a,
+ul {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: #222;
+}
+/* nav & footer */
+nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 60px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  text-transform: uppercase;
+}
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+nav li {
+  list-style: none;
+  margin-left: 20px;
+}
+
+nav h1 {
+  font-size: 2rem;
+}
+
+nav p,
+nav a {
+  color: #777;
+  font-weight: 300;
+}
+
+footer {
+  color: #777;
+  text-align: center;
+  margin: 80px auto 20px;
+}
+
+/* content class */
+.content {
+  margin-left: 20px;
+}
+
+/* Create */
+.create-blog form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.create-blog input,
+.create-blog textarea {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 8px;
+}
+
+.create-blog label {
+  display: block;
+  margin-top: 24px;
+}
+
+textarea {
+  height: 120px;
+}
+
+.create-blog button {
+  margin-top: 20px;
+  background-color: crimson;
+  color: white;
+  padding: 6px;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
