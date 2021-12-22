@@ -9,7 +9,7 @@
         <h2>Listado de blogs</h2>
         <% if(blogs.length > 0){ %>
             <% blogs.forEach(blog => { %>
-                <h3 class="title"><%= blog.title %> </h3>
+                <a href="/blog/<%= blog.id %>"><h3 class="title"><%= blog.title %></h3></a>
                 <p class="resume"><%= blog.resume %></p>
             <% }) %>   
        <% } else {%>
