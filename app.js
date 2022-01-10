@@ -4,6 +4,7 @@ const blogRoutes = require('./routes/blogRoutes')
 
 const app = express();
 
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log("Servidor arrancado ok!"));
 
@@ -24,6 +25,7 @@ app.get("/about", (req, res) => {
 });
 
 app.use('/blog', blogRoutes)
+
 app.use((req, res) => {
   res.status(404).render("404", { title: "404" });
 });

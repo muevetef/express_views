@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("./partials/head.ejs") %>
+  <body>
+    <%- include("./partials/nav.ejs") %>
+
+    <div class="content create-blog">
+
+      <form method="post" action="/blog/update">
+        <input type="hidden" value="<%= blog.id %>" name = "id">
+        <label for="title">Título</label>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          value="<%= blog.title %>"
+          required
+        />
+        <label for="resume">Resumen</label>
+        <input
+          type="text"
+          name="resume"
+          id="resume"
+          value="<%= blog.resume %>"
+          required
+        />
+        <label for="body">Contenido</label>
+        <textarea name="body" id="body"><%= blog.body %></textarea>
+        <button type="submit">Editar</button>
+      </form>
+    </div>
+    <%- include("./partials/footer.ejs") %>
+  </body>
+</html>

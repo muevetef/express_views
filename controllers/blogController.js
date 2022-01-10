@@ -23,6 +23,28 @@ const blog_create_post = (req, res) => {
     res.redirect("/");
   }
 
+const blog_update_get = (req, res) => {
+  //buscar el blog a actualizar y renderizar la vista
+  const blog = blogs.find((blog) => blog.id == req.params.id);
+  res.render("update", { title: "Editar el blog", blog });
+}
+
+const blog_update_post = (req, res) => {
+  //buscar el blog a actualizar y renderizar la vista
+  blogs.forEach((blog, index) => {
+    if (blog.id == req.params.id) {
+      // blogs[index].title = req.body.title;
+      // blogs[index].resume = req.body.resume;
+      // blogs[index].body = req.body.body;
+      blogs[index] = {id: blog.id, ...req.body}
+    }
+  });
+
+  res.redirect("/blog/"+ req.params.id);
+  
+}
+
+
 const blog_delete = (req, res) => {
     //elimina el elemento del array
     blogs.forEach((blog, index) => {
@@ -38,5 +60,7 @@ const blog_delete = (req, res) => {
       blog_details,
       blog_create_get,
       blog_create_post,
-      blog_delete
+      blog_delete,
+      blog_update_get,
+      blog_update_post
   }

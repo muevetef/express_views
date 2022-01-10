@@ -11,6 +11,7 @@
             <p><%= blog.body %></p>
         </div>
         <a class="delete" href="#" data-id= <%=blog.id%> >Eliminar</a>
+        <a class="editar" href="/blog/update/<%=blog.id%>" >Editar</a>
     </div>
     <%- include("./partials/footer.ejs") %>
     <script>
