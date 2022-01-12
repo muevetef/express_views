@@ -6,8 +6,7 @@
 
     <div class="content create-blog">
 
-      <form method="post" action="/blog/update">
-        <input type="hidden" value="<%= blog.id %>" name = "id">
+      <form method="post" action="/blog/update/<%= blog.id %>">
         <label for="title">Título</label>
         <input
           type="text"

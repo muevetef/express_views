@@ -13,7 +13,7 @@ router.get("/:id", blogController.blog_details);
 
 router.get("/update/:id", blogController.blog_update_get);
 
-router.post("/update", blogController.blog_update_post);
+router.post("/update/:id", blogController.blog_update_post);
 
 router.delete("/:id", blogController.blog_delete);
 
