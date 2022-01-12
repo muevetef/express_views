@@ -1,33 +1,53 @@
-const blogs = require("../models/blog")
-const uuid = require("uuid");
+const Blog = require("../models/Blog");
 
-const blog_index = (req, res) => {
-    console.log(req.query);
-    res.render("index", { title: "Inicio", blogs });
+const blog_index = async (req, res) => {
+  try {
+   const blogs =  await Blog.find().sort({createdAt: -1})
+   res.render("index", { title: "Inicio", blogs });
+  } catch (err) {
+    console.log(err)
   }
+
+/*   Blog.find()
+    .then((blogs) => {
+      res.render("index", { title: "Inicio", blogs });
+    })
+    .catch((err) => console.log(err)); */
+};
 
 const blog_details = (req, res) => {
-    console.log(req.params);
-    const blog = blogs.find((blog) => blog.id == req.params.id);
-    console.log(blog);
+  
+  Blog.findById(req.params.id)
+  .then(blog => {
     res.render("detail", { title: blog.title, blog });
-  };
+  })
+  .catch(err => {
+    console.log(err)
+    res.render('404', {title: "Blog no encontrado"})
+  })
+};
 
 const blog_create_get = (req, res) => {
-    res.render("create", { title: "Crear un blog nuevo" });
-  }
+  res.render("create", { title: "Crear un blog nuevo" });
+};
 
 const blog_create_post = (req, res) => {
-    const blog = { id: uuid.v4(), ...req.body };
-    blogs.push(blog);
-    res.redirect("/");
-  }
+  const blog = new Blog(req.body);
+  console.log(blog);
+  blog
+    .save()
+    .then((result) => {
+      console.log("Registro guardado", result);
+      res.redirect("/blog");
+    })
+    .catch((err) => console.log(err));
+};
 
 const blog_update_get = (req, res) => {
   //buscar el blog a actualizar y renderizar la vista
   const blog = blogs.find((blog) => blog.id == req.params.id);
   res.render("update", { title: "Editar el blog", blog });
-}
+};
 
 const blog_update_post = (req, res) => {
   //buscar el blog a actualizar y renderizar la vista
@@ -36,31 +56,29 @@ const blog_update_post = (req, res) => {
       // blogs[index].title = req.body.title;
       // blogs[index].resume = req.body.resume;
       // blogs[index].body = req.body.body;
-      blogs[index] = {id: blog.id, ...req.body}
+      blogs[index] = { id: blog.id, ...req.body };
     }
   });
 
-  res.redirect("/blog/"+ req.params.id);
-  
-}
-
+  res.redirect("/blog/" + req.params.id);
+};
 
 const blog_delete = (req, res) => {
-    //elimina el elemento del array
-    blogs.forEach((blog, index) => {
-      if (blog.id == req.params.id) {
-        blogs.splice(index, 1);
-      }
-    });
-    res.json({ redirect: "/" });
-  }
+  //elimina el elemento del array
+  blogs.forEach((blog, index) => {
+    if (blog.id == req.params.id) {
+      blogs.splice(index, 1);
+    }
+  });
+  res.json({ redirect: "/" });
+};
 
-  module.exports = {
-      blog_index,
-      blog_details,
-      blog_create_get,
-      blog_create_post,
-      blog_delete,
-      blog_update_get,
-      blog_update_post
-  }
+module.exports = {
+  blog_index,
+  blog_details,
+  blog_create_get,
+  blog_create_post,
+  blog_delete,
+  blog_update_get,
+  blog_update_post,
+};
